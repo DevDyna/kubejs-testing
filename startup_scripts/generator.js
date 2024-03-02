@@ -68,3 +68,4 @@ StartupEvents.registry("block", (event) => {
 }
 
 generator("minecraft:debug_stick",'dynamo',20)
+generator("minecraft:debug_stick",'omega_dynamo',2000)

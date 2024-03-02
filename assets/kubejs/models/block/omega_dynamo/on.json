@@ -1,0 +1,7 @@
+{
+  "parent": "kubejs:block/dynamo/template",
+  "textures": {
+    "front": "kubejs:block/animate",
+	"frame": "kubejs:block/frame"
+  }
+}
