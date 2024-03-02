@@ -2,7 +2,7 @@
 Platform.mods.kubejs.name = "Celestial Core";
 
 StartupEvents.registry("item", (event) => {
-  event.create("minecraft:stick").texture('kubejs:item/star').displayName('Energy Singularity').unstackable()
+  event.create("minecraft:debug_stick").texture('kubejs:item/star').displayName('Energy Singularity').unstackable()
 
 })
 
@@ -67,4 +67,4 @@ StartupEvents.registry("block", (event) => {
 });
 }
 
-generator("minecraft:stick",'dynamo',20)
+generator("minecraft:debug_stick",'dynamo',20)
