@@ -1,13 +1,4 @@
 
-Platform.mods.kubejs.name = "Celestial Core";
-
-StartupEvents.registry("item", (event) => {
-  event.create("minecraft:debug_stick").texture('kubejs:item/star').displayName('Energy Singularity').unstackable()
-
-})
-
-const $BooleanProperty = Java.loadClass('net.minecraft.world.level.block.state.properties.BooleanProperty')
-
 /**
  * 
  * @param {item} item item id
@@ -15,7 +6,7 @@ const $BooleanProperty = Java.loadClass('net.minecraft.world.level.block.state.p
  * @param {number} rfgen FE generated / tick
  */
 
-function generator(item,id_block,rfgen){
+function dynamo(item,id_block,rfgen){
 StartupEvents.registry("block", (event) => {
   event.create(id_block).property($BooleanProperty.create("active")).blockEntity((be) => {
       be.inventory(9, 1, item);
@@ -58,14 +49,22 @@ StartupEvents.registry("block", (event) => {
             }
           })
       );
+    }).item(item=>{
+      item.modelJson({
+        "parent": "kubejs:block/dynamo/off"
+      })
+
     }).blockstateJson = {
       "variants": {
-          "active=true": { "model": "kubejs:block/"+id_block+"/on" },
-          "active=false": { "model": "kubejs:block/"+id_block+"/off" }
+          //"active=true": { "model": "kubejs:block/"+id_block+"/on" },
+          //"active=false": { "model": "kubejs:block/"+id_block+"/off" }
+          "active=true": { "model": "kubejs:block/dynamo/on" },
+          "active=false": { "model": "kubejs:block/dynamo/off" }
       }
   }
 });
 }
 
-generator("minecraft:debug_stick",'dynamo',20)
-generator("minecraft:debug_stick",'omega_dynamo',2000)
+dynamo("minecraft:debug_stick",'dynamo',20)
+dynamo("minecraft:debug_stick",'omega_dynamo',2000)
+
