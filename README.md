@@ -1,2 +1,2 @@
 # kubejs-testing
-Where everything can happen!
+Where everything could happen!
