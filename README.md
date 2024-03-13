@@ -1,1 +1,2 @@
-# kubejs-generator
+# kubejs-testing
+Where everything could happen!
