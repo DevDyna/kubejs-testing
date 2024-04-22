@@ -21,6 +21,14 @@ StartupEvents.registry("block", (event) => {
             state.persistentData.putInt('rate',state.inventory.count(item))
         })
 
+      //   be.attachCapability(CapabilityBuilder.FLUID.customBlockEntity()
+      //   .getFluid(0,'minecraft:water')
+      //   .getCapacity(10)
+      //   .onFill(()=>0)
+      //   .onDrain(()=>0)
+      // )
+
+
       be.attachCapability(
         CapabilityBuilder.ENERGY.customBlockEntity()
           .canExtract(() => true)

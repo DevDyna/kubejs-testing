@@ -1,9 +1,9 @@
 ServerEvents.recipes((event) => {
   //New Augment code
-  event.shapeless(
-    Item.of("data:debug_stick", "{AugmentData:{Type: Upgrade, BaseMod:5f}}"),
-    ["minecraft:stone"]
-  );
+  // event.shapeless(
+  //   Item.of("data:debug_stick", "{AugmentData:{Type: Upgrade, BaseMod:5f}}"),
+  //   ["minecraft:stone"]
+  // );
 });
 
 const augment = [
