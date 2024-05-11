@@ -39,25 +39,29 @@ function generator(item, id_block, rate, max) {
             active: state.persistentData.getBoolean("active"),
           });
 
-          if (state.persistentData.getBoolean("active")) {
-            if (Math.floor(Math.random() * 5) == 4) {
-              let { x, y, z } = state;
-              let compost = state.level.createEntity("item");
-              compost.x = x + 0.5;
-              compost.y = y + 1;
-              compost.z = z + 0.5;
-              compost.item = Item.of(item);
-              compost.spawn();
+          if (state.persistentData.getInt("amount") >= rate) {
+            if (state.persistentData.getInt("amount") == rate) {
+              state.persistentData.putBoolean("active", false);
             }
-          }
-          if (state.persistentData.getInt("amount") > rate ? true : false) {
+
             state.persistentData.putInt(
               "amount",
-              state.persistentData.getInt("amount") - rate/20
+              state.persistentData.getInt("amount") - rate
             );
+
+            if (state.persistentData.getBoolean("active")) {
+              if (Math.floor(Math.random() * 5) == 4) {
+                let { x, y, z } = state;
+                let compost = state.level.createEntity("item");
+                compost.x = x + 0.5;
+                compost.y = y + 1;
+                compost.z = z + 0.5;
+                compost.item = Item.of(item);
+                compost.spawn();
+              }
+            }
           } else {
-            state.persistentData.putInt("amount", 0);
-            state.persistentData.putBoolean("active",false)
+            state.persistentData.putBoolean("active", false);
           }
         });
       })
