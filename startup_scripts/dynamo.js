@@ -73,6 +73,6 @@ StartupEvents.registry("block", (event) => {
 });
 }
 
-dynamo("minecraft:debug_stick",'dynamo',20)
-dynamo("minecraft:debug_stick",'omega_dynamo',2000)
+dynamo("powergen:energy",'dynamo',20)
+dynamo("powergen:energy",'omega_dynamo',2000)
 
