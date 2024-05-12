@@ -7,55 +7,41 @@ StartupEvents.registry("block", (event) => {
     .property($BooleanProperty.create("west"))
     .property($BooleanProperty.create("up"))
     .property($BooleanProperty.create("down"))
-
+    .defaultCutout()
     .blockEntity((be) => {
       be.serverTick(10, 0, (tick) => {
-        const {x,y,z} = tick.block
         let position = [
-          [1,0,0],
-          [-1,0,0],
-          [0,0,1],
-          [0,0,-1],
-          [0,1,0],
-          [0,-1,0],
-        ]
+          [1, 0, 0],
+          [-1, 0, 0],
+          [0, 0, 1],
+          [0, 0, -1],
+          [0, 1, 0],
+          [0, -1, 0],
+        ];
 
-        let cardinal =[
-          "north",
-          "south",
-          "east",
-          "west",
-          "up",
-          "down"
-          ]
+        let cardinal = ["north", "south", "east", "west", "up", "down"];
 
-          let invers =[
-            "south",
-            "north",
-            "west",
-            "east",
-            "down",
-            "up"
-            ]
+        let invers = ["south", "north", "west", "east", "down", "up"];
 
-        position.forEach(element,index => {
-          if(tick.block.offset(element[0],element[1],element[2]).id == 'kubejs:pipe'){
-            tick.block.properties.get(cardinal[index]) = true
-            tick.block.offset(element[0],element[1],element[2]).properties.get(invers[index]) = true
-          }else{
-            tick.block.properties.get(cardinal[index]) = false
+        position.forEach((element, index) => {
+          if (
+            tick.block.offset(element[0], element[1], element[2]).id ==
+            "kubejs:pipe"
+          ) {
+            tick.block.properties.put(cardinal[index],true)
+            tick.block
+              .offset(element[0], element[1], element[2])
+              .properties.put(invers[index],true)
+          } else {
+            tick.block.properties.put(cardinal[index],false)
           }
-          
         });
-
-
-
       });
     })
 
     .item((item) => {
       item.modelJson({
-        parent: "kubejs:block/pipe/core",
+        parent: "kubejs:block/pipe/item_model",
       });
     }).blockstateJson = {
     multipart: [
