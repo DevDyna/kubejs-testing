@@ -17,5 +17,5 @@
 [`Custom BE consumer`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/startup_scripts/gens.js)
 
 
-### For More info
+### For more info
 [github](https://github.com/Celestial-Remembrance)
