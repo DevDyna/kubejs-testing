@@ -9,33 +9,61 @@ StartupEvents.registry("block", (event) => {
     .property($BooleanProperty.create("down"))
     .defaultCutout()
     .blockEntity((be) => {
-      be.serverTick(10, 0, (tick) => {
+      be.serverTick(1, 0, (tick) => {
+        const { x, y, z } = tick.block;
         let position = [
-          [1, 0, 0],
-          [-1, 0, 0],
-          [0, 0, 1],
-          [0, 0, -1],
-          [0, 1, 0],
-          [0, -1, 0],
+          [x + 0, y + 0, z - 1],
+          [x + 0, y + 0, z + 1],
+          [x - 1, y + 0, z + 0],
+          [x + 1, y + 0, z + 0],
+          [x + 0, y + 1, z + 0],
+          [x + 0, y - 1, z + 0],
         ];
 
         let cardinal = ["north", "south", "east", "west", "up", "down"];
 
         let invers = ["south", "north", "west", "east", "down", "up"];
 
+        let prop = {
+          north: false,
+          south: false,
+          east: false,
+          west: false,
+          up: false,
+          down: false,
+        };
+        let value;
+        //tick.player.tell(prop)
+
         position.forEach((element, index) => {
-          if (
-            tick.block.offset(element[0], element[1], element[2]).id ==
-            "kubejs:pipe"
-          ) {
-            tick.block.properties.put(cardinal[index],true)
-            tick.block
-              .offset(element[0], element[1], element[2])
-              .properties.put(invers[index],true)
-          } else {
-            tick.block.properties.put(cardinal[index],false)
+          //tick.player.tell(tick.level.getBlock(element[0],element[1],element[2]))
+          value =
+            tick.level.getBlock(element[0], element[1], element[2]) ==
+            "kubejs:pipe";
+
+          switch (cardinal[index]) {
+            case "north":
+              if (value) prop.north = true;
+              break;
+            case "south":
+              if (value) prop.south = true;
+              break;
+            case "east":
+              if (value) prop.east = true;
+              break;
+            case "west":
+              if (value) prop.west = true;
+              break;
+            case "up":
+              if (value) prop.up = true;
+              break;
+            case "down":
+              if (value) prop.down = true;
+              break;
           }
         });
+
+        tick.block.set(tick.block.id, prop);
       });
     })
 
@@ -82,150 +110,4 @@ StartupEvents.registry("block", (event) => {
       },
     ],
   };
-
-  /*
-   {
-  "multipart": [
-    {
-      "when": { "OR": [
-		{"up": "false"},
-		{"down": "false"}
-      ]},
-	  "apply": { "model": "minecraft:block/chorus/plant/center" }
-    },
-	
-	{
-      "when": {"north": "true" },
-      "apply": [
-		{ "model": "minecraft:block/chorus/plant/double_stem", "x": 90, "y": 180 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_2", "x": 90, "y": 180 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_3", "x": 90, "y": 180 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_4", "x": 90, "y": 180 }
-	  ]
-    },
-    {
-      "when": { "east": "true" , "up": "false"},
-      "apply": [
-		{ "model": "minecraft:block/chorus/plant/double_stem", "x": 90, "y": 270 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_2", "x": 90, "y": 270 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_3", "x": 90, "y": 270 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_4", "x": 90, "y": 270 }
-	  ]
-    },
-    {
-      "when": { "south": "true" , "up": "false"},
-      "apply": [
-		{ "model": "minecraft:block/chorus/plant/double_stem", "x": 90 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_2", "x": 90 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_3", "x": 90 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_4", "x": 90 }
-	  ]
-    },
-    {
-      "when": { "west": "true" , "up": "false"},
-      "apply": [
-		{ "model": "minecraft:block/chorus/plant/double_stem", "x": 90, "y": 90 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_2", "x": 90, "y": 90 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_3", "x": 90, "y": 90 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_4", "x": 90, "y": 90 }
-	  ]
-    },
-	
-	
-	
-	{
-      "when": {"north": "true" , "down": "false"},
-      "apply": [
-		{ "model": "minecraft:block/chorus/plant/double_stem", "x": 90, "y": 180 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_2", "x": 90, "y": 180 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_3", "x": 90, "y": 180 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_4", "x": 90, "y": 180 }
-	  ]
-    },
-    {
-      "when": { "east": "true" , "down": "false"},
-      "apply": [
-		{ "model": "minecraft:block/chorus/plant/double_stem", "x": 90, "y": 270 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_2", "x": 90, "y": 270 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_3", "x": 90, "y": 270 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_4", "x": 90, "y": 270 }
-	  ]
-    },
-    {
-      "when": { "south": "true" , "down": "false"},
-      "apply": [
-		{ "model": "minecraft:block/chorus/plant/double_stem", "x": 90 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_2", "x": 90 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_3", "x": 90 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_4", "x": 90 }
-	  ]
-    },
-    {
-      "when": { "west": "true" , "down": "false"},
-      "apply": [
-		{ "model": "minecraft:block/chorus/plant/double_stem", "x": 90, "y": 90 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_2", "x": 90, "y": 90 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_3", "x": 90, "y": 90 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_4", "x": 90, "y": 90 }
-	  ]
-    },
-	{
-      "when": {"north": "true" , "down": "true", "up": "true"},
-      "apply": [
-		{ "model": "minecraft:block/chorus/plant/small_stem", "x": 90, "y": 180 },
-		{ "model": "minecraft:block/chorus/plant/small_stem_2", "x": 90, "y": 180 },
-		{ "model": "minecraft:block/chorus/plant/small_stem_3", "x": 90, "y": 180 },
-		{ "model": "minecraft:block/chorus/plant/small_stem_4", "x": 90, "y": 180 }
-	  ]
-    },
-    {
-      "when": { "east": "true" , "down": "true", "up": "true"},
-      "apply": [
-		{ "model": "minecraft:block/chorus/plant/small_stem", "x": 90, "y": 270 },
-		{ "model": "minecraft:block/chorus/plant/small_stem_2", "x": 90, "y": 270 },
-		{ "model": "minecraft:block/chorus/plant/small_stem_3", "x": 90, "y": 270 },
-		{ "model": "minecraft:block/chorus/plant/small_stem_4", "x": 90, "y": 270 }
-	  ]
-    },
-    {
-      "when": { "south": "true" , "down": "true", "up": "true"},
-      "apply": [
-		{ "model": "minecraft:block/chorus/plant/small_stem", "x": 90 },
-		{ "model": "minecraft:block/chorus/plant/small_stem_2", "x": 90 },
-		{ "model": "minecraft:block/chorus/plant/small_stem_3", "x": 90 },
-		{ "model": "minecraft:block/chorus/plant/small_stem_4", "x": 90 }
-	  ]
-    },
-    {
-      "when": { "west": "true" , "down": "true", "up": "true"},
-      "apply": [
-		{ "model": "minecraft:block/chorus/plant/small_stem", "x": 90, "y": 90 },
-		{ "model": "minecraft:block/chorus/plant/small_stem_2", "x": 90, "y": 90 },
-		{ "model": "minecraft:block/chorus/plant/small_stem_3", "x": 90, "y": 90 },
-		{ "model": "minecraft:block/chorus/plant/small_stem_4", "x": 90, "y": 90 }
-	  ]
-    },
-	
-	
-    {
-      "when": { "up": "true" },
-      "apply": [
-		{ "model": "minecraft:block/chorus/plant/double_stem", "x": 180 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_2", "x": 180 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_3", "x": 180 },
-		{ "model": "minecraft:block/chorus/plant/double_stem_4", "x": 180 }
-	  ]
-    },
-    {
-      "when": { "down": "true" },
-      "apply": [
-		{ "model": "minecraft:block/chorus/plant/double_stem" },
-		{ "model": "minecraft:block/chorus/plant/double_stem_2" },
-		{ "model": "minecraft:block/chorus/plant/double_stem_3" },
-		{ "model": "minecraft:block/chorus/plant/double_stem_4" }
-	]
-    }
-  ]
-}
-   */
 });
