@@ -1,0 +1,9 @@
+{
+    "author": "Celestial Remembrance",
+    "description": "Collection of random scripts from Celestial Remembrance Team",
+    
+    "versions": [10],
+    "modloaders": ["forge"],
+    "dependencies": ["mod:kubejs"],
+    "incompatibilities": []
+}
