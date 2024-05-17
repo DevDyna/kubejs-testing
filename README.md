@@ -12,7 +12,7 @@
 
 ~~[`NeoMagicJS source`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/server_scripts/data.js)~~ -> [`NeoMagicJS repository`](https://github.com/DevDyna/NeoMagicJS)
 
-## REQUIRE PowerfulJS
+## REQUIRES PowerfulJS
 [`Custom BE generator`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/startup_scripts/dynamo.js)
 [`Custom BE consumer`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/startup_scripts/gens.js)
 
