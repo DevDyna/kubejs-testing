@@ -22,8 +22,6 @@ StartupEvents.registry("block", (event) => {
 
         let cardinal = ["north", "south", "east", "west", "up", "down"];
 
-        let invers = ["south", "north", "west", "east", "down", "up"];
-
         let prop = {
           north: false,
           south: false,
