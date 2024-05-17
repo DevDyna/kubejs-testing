@@ -15,3 +15,7 @@
 ## REQUIRE PowerfulJS
 [`Custom BE generator`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/startup_scripts/dynamo.js)
 [`Custom BE consumer`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/startup_scripts/gens.js)
+
+
+### For More info
+[github](https://github.com/Celestial-Remembrance)
