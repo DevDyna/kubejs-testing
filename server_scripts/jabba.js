@@ -1,5 +1,3 @@
-import { lookupService } from "dns";
-
 ServerEvents.tags("block", (event) => {
   let materials = [
     "_",
@@ -64,6 +62,7 @@ BlockEvents.rightClicked((event) => {
         subfacing: properties.get("subfacing"),
         locked: fs_lk,
       });
+      event.cancel()
     }
     // else
     // if (block.hasTag("storagedrawers:drawers")) {
