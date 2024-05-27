@@ -6,3 +6,4 @@ config/common.properties
 config/client.properties
 client_scripts/example.js
 README.txt
+_schematics

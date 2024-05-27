@@ -4,8 +4,8 @@ StartupEvents.registry("block", (event) => {
     .property(BlockProperties.DOUBLE_BLOCK_HALF)
     .placementState((a) => {
       const { x, y, z } = a.block;
-      if(a.level.getBlock(x,y+1,z) == 'minecraft:air')
-      a.level.getBlock(x,y+1,z).set('kubejs:pillar', { half: "lower" })
+      if (a.level.getBlock(x, y + 1, z) == "minecraft:air")
+        a.level.getBlock(x, y + 1, z).set("kubejs:pillar", { half: "lower" });
     })
     .item((item) => {
       item.modelJson({
@@ -13,8 +13,8 @@ StartupEvents.registry("block", (event) => {
       });
     }).blockstateJson = {
     variants: {
-      "half=lower": { "model": "kubejs:block/multi/top" },
-      "half=upper": { "model": "kubejs:block/multi/bottom" },
+      "half=lower": { model: "kubejs:block/multi/top" },
+      "half=upper": { model: "kubejs:block/multi/bottom" },
     },
   };
 });
