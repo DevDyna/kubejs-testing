@@ -73,6 +73,6 @@ StartupEvents.registry("block", (event) => {
 });
 }
 
-dynamo("powergen:energy",'dynamo',20)
-dynamo("powergen:energy",'omega_dynamo',2000)
+dynamo('minecraft:redstone','dynamo',20)
+dynamo('minecraft:redstone','omega_dynamo',2000)
 
