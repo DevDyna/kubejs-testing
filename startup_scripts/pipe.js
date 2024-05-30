@@ -1,7 +1,3 @@
-const $IntegerProperty = Java.loadClass(
-  "net.minecraft.world.level.block.state.properties.IntegerProperty"
-);
- 
 const oppositeDirection = {
   north: Direction.SOUTH,
   south: Direction.NORTH,
@@ -10,7 +6,7 @@ const oppositeDirection = {
   down: Direction.UP,
   up: Direction.DOWN,
 };
- 
+
 const directionProperties = {
   north: BlockProperties.NORTH,
   south: BlockProperties.SOUTH,
@@ -19,7 +15,7 @@ const directionProperties = {
   down: BlockProperties.DOWN,
   up: BlockProperties.UP,
 };
- 
+
 StartupEvents.registry("block", (event) => {
   event
     .create("kubejs:pipe")
