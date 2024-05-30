@@ -1,44 +1,111 @@
 StartupEvents.registry("block", (event) => {
   event
-    .create("kubejs:consumer")
-    .randomTick((tick) => {
-      const { x, y, z } = tick.block;
-      let ore = ["stone", "coal_ore", "copper_ore", "iron_ore"];
-      let result = ["coal_ore", "copper_ore", "iron_ore", "gold_ore"];
-      ore.forEach((e, index) => {
-        if (tick.level.getBlock(x, y + 1, z) == "minecraft:" + e) {
-          tick.level.getBlock(x, y + 1, z).set("minecraft:" + result[index]);
-          tick.level.spawnParticles(
-            "minecraft:flash",
+    .create("kubejs:converter")
+    .property($BooleanProperty.create("active"))
+    .blockEntity((be) => {
+      be.serverTick(1, 0, (state) => {
+        const { x, y, z } = state.block;
+        let minerals = ["stone", "coal_ore", "copper_ore", "iron_ore"];
+        state.block.set(state.block.id, {
+          active: state.persistentData.getBoolean("active"),
+        });
+
+        if (state.persistentData.getBoolean("active") && rnd(0, 10) == 10) {
+          state.level.spawnParticles(
+            "minecraft:portal",
             true,
-            x,
-            y + 0.5,
-            z,
+            x + 0.1 * rnd(1, 9),
+            y + 0.5 + 0.1 * rnd(1, 9),
+            z + 0.1 * rnd(1, 9),
             0,
             0,
             0,
-            1,
+            10,
             0.1
           );
+          if (state.persistentData.getBoolean("active") && rnd(0, 6) == 6) {
+            minerals.forEach((e) => {
+              if (state.level.getBlock(x, y + 1, z) == "minecraft:" + e) {
+                state.level.spawnParticles(
+                  "minecraft:flash",
+                  true,
+                  x,
+                  y + 0.5,
+                  z,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.1
+                );
+                switch (state.level.getBlock(x, y + 1, z)) {
+                  case "minecraft:stone":
+                    state.level.getBlock(x, y + 1, z).set("minecraft:coal_ore");
+                    break;
+                  case "minecraft:coal_ore":
+                    state.level
+                      .getBlock(x, y + 1, z)
+                      .set("minecraft:copper_ore");
+                    break;
+                  case "minecraft:copper_ore":
+                    state.level.getBlock(x, y + 1, z).set("minecraft:iron_ore");
+                    break;
+                  case "minecraft:iron_ore":
+                    state.level.getBlock(x, y + 1, z).set("minecraft:gold_ore");
+                    break;
+                  default:
+                }
+                state.persistentData.putInt(
+                  "amount",
+                  state.persistentData.getInt("amount") - 100
+                );
+                return;
+              }
+            });
+          }
+        }
+
+        if (state.persistentData.getInt("amount") > 0) {
+          state.persistentData.putBoolean("active", true);
+        } else {
+          state.persistentData.putBoolean("active", false);
         }
       });
-    })
-    .blockEntity((be) => {
-      be.clientTick(5, 0, (tick) => {
-        const { x, y, z } = tick.block;
-        tick.level.spawnParticles(
-          "minecraft:portal",
-          true,
-          x + 0.1 * rnd(1, 9),
-          y + 1.25 + 0.1 * rnd(1, 9),
-          z + 0.1 * rnd(1, 9),
-          0,
-          0,
-          0,
-          10,
-          0.1
-        );
-      });
+
+      be.attachCapability(
+        CapabilityBuilder.ENERGY.customBlockEntity()
+          .canExtract(() => false)
+          .canReceive(() => true)
+
+          .receiveEnergy((energy, amount) => {
+            if (amount > 1000) {
+              energy.persistentData.putBoolean("active", true);
+              return 1000;
+            } else {
+              if (energy.persistentData.getInt("amount") < 1000)
+                energy.persistentData.putInt(
+                  "amount",
+                  amount + energy.persistentData.getInt("amount")
+                );
+              else {
+                energy.persistentData.putInt("amount", 1000);
+              }
+
+              energy.persistentData.putBoolean(
+                "active",
+                amount > 0 ? true : false
+              );
+              return amount + energy.persistentData.getInt("amount");
+            }
+          })
+
+          .getEnergyStored((energy) => {
+            return energy.persistentData.getInt("amount");
+          })
+          .getMaxEnergyStored((energy) => {
+            return 1000;
+          })
+      );
     })
 
     .item((item) => {
@@ -47,7 +114,8 @@ StartupEvents.registry("block", (event) => {
       });
     }).blockstateJson = {
     variants: {
-      "": { model: "kubejs:block/dynamo/off" },
+      "active=true": { model: "kubejs:block/dynamo/on" },
+      "active=false": { model: "kubejs:block/dynamo/off" },
     },
   };
 });
