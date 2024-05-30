@@ -5,20 +5,31 @@
  * @param {block} id_block block id of generator
  * @param {number} rfgen FE generated / tick
  */
-
-function dynamo(item,id_block,rfgen){
+let i = 0
+function dynamo(item,id_block,rfgen,consume){
 StartupEvents.registry("block", (event) => {
   event.create(id_block).property($BooleanProperty.create("active")).blockEntity((be) => {
       be.inventory(9, 1, item);
       be.rightClickOpensInventory();
 
         be.serverTick(1,0,state=>{
+
           state.persistentData.putBoolean('active',(!state.inventory.isEmpty()))
+          state.persistentData.putInt('delay',state.persistentData.getInt('delay')+1)
 
           state.block.set(state.block.id, {active: state.persistentData.getBoolean('active')})
 
             if(state.persistentData.getBoolean('active'))
             state.persistentData.putInt('rate',state.inventory.count(item))
+
+            if(state.persistentData.getInt('delay') >= 20){
+              state.persistentData.putInt('delay',0)
+              if(state.persistentData.getBoolean('active') && consume){
+                state.inventory.extractItem(state.inventory.find(item),1,false)
+              }
+            }
+
+
         })
 
       //   be.attachCapability(CapabilityBuilder.FLUID.customBlockEntity()
@@ -73,6 +84,6 @@ StartupEvents.registry("block", (event) => {
 });
 }
 
-dynamo('minecraft:redstone','dynamo',20)
-dynamo('minecraft:redstone','omega_dynamo',2000)
+dynamo('minecraft:redstone','dynamo',20,false)
+dynamo('minecraft:redstone','omega_dynamo',2000,true)
 
