@@ -10,11 +10,15 @@ function generator(item, id_block, rate, max) {
             .canReceive(() => true)
 
             .receiveEnergy((energy, amount) => {
+              if(amount > max) {
+                energy.persistentData.putBoolean('active',true)
+                return max
+              }else {
               if (energy.persistentData.getInt("amount") < 1000)
                 energy.persistentData.putInt(
                   "amount",
-                  amount + energy.persistentData.getInt("amount")
-                );
+                  Math.min(amount + energy.persistentData.getInt("amount")
+                ));
               else {
                 energy.persistentData.putInt("amount", 1000);
               }
@@ -24,6 +28,7 @@ function generator(item, id_block, rate, max) {
                 amount > 0 ? true : false
               );
               return amount + energy.persistentData.getInt("amount");
+            }
             })
 
             .getEnergyStored((energy) => {
@@ -46,7 +51,7 @@ function generator(item, id_block, rate, max) {
 
             state.persistentData.putInt(
               "amount",
-              state.persistentData.getInt("amount") - rate
+              Math.min(1919810 - state.persistentData.getInt("amount"), rate)
             );
 
             if (state.persistentData.getBoolean("active")) {
