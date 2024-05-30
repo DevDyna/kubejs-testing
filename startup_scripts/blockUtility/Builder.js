@@ -6,10 +6,11 @@ StartupEvents.registry("block", (event) => {
         let xa = x,
           ya = y + 1,
           za = z;
+          if(rnd(0,10) == 10){
         while (tick.level.getBlock(xa, ya, za) != "minecraft:air" && tick.level.maxBuildHeight != ya) {
           ya++;
         }
-        tick.level.getBlock(xa, ya, za).set("minecraft:white_concrete_powder");
+        tick.level.getBlock(xa, ya, za).set("minecraft:white_concrete_powder");}
       })
       .item((item) => {
         item.modelJson({
