@@ -56,7 +56,7 @@ StartupEvents.registry("block", (event) => {
             "minecraft:portal",
             true,
             x + 0.1 * rnd(1, 9),
-            y + 0.25 + e + 0.1 * rnd(1, 5),
+            y + e + 0.1 * rnd(1, 5),
             z + 0.1 * rnd(1, 9),
             0,
             0,

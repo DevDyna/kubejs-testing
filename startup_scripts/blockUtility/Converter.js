@@ -23,9 +23,13 @@ StartupEvents.registry("block", (event) => {
             10,
             0.1
           );
-          if (state.persistentData.getBoolean("active") && rnd(0, 6) == 6) {
+          if (state.persistentData.getBoolean("active") && rnd(0, 2) == 2) {
             minerals.forEach((e) => {
               if (state.level.getBlock(x, y + 1, z) == "minecraft:" + e) {
+                state.persistentData.putInt(
+                  "amount",
+                  state.persistentData.getInt("amount") - 100
+                );
                 state.level.spawnParticles(
                   "minecraft:flash",
                   true,
@@ -38,28 +42,7 @@ StartupEvents.registry("block", (event) => {
                   1,
                   0.1
                 );
-                switch (state.level.getBlock(x, y + 1, z)) {
-                  case "minecraft:stone":
-                    state.level.getBlock(x, y + 1, z).set("minecraft:coal_ore");
-                    break;
-                  case "minecraft:coal_ore":
-                    state.level
-                      .getBlock(x, y + 1, z)
-                      .set("minecraft:copper_ore");
-                    break;
-                  case "minecraft:copper_ore":
-                    state.level.getBlock(x, y + 1, z).set("minecraft:iron_ore");
-                    break;
-                  case "minecraft:iron_ore":
-                    state.level.getBlock(x, y + 1, z).set("minecraft:gold_ore");
-                    break;
-                  default:
-                }
-                state.persistentData.putInt(
-                  "amount",
-                  state.persistentData.getInt("amount") - 100
-                );
-                return;
+                state.level.getBlock(x, y + 1, z).set("minecraft:gold_ore");
               }
             });
           }
