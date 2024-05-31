@@ -18,7 +18,6 @@ const oppositeDirection = {
       try {
         blockProp.type = "1";
         event.block.set(event.block.id, blockProp);
-        console.log(event.item.count);
         event.item.count = event.item.count - 1;
       } catch (error) {
         console.error(error);
