@@ -1,6 +1,7 @@
 //priority 999
 
-Platform.mods.kubejs.name = "Celestial Core";
+Platform.mods.kubejs.name = "IronBerry Core";
+//"Celestial Core";
 const $BooleanProperty = Java.loadClass(
   "net.minecraft.world.level.block.state.properties.BooleanProperty"
 );
