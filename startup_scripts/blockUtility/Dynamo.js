@@ -1,4 +1,3 @@
-
 /**
  * 
  * @param {item} item item id
@@ -38,6 +37,12 @@ StartupEvents.registry("block", (event) => {
       //   .onFill(()=>0)
       //   .onDrain(()=>0)
       // )
+
+        // be.attachCapability(
+        //   CapabilityBuilder.ITEM.blockEntity()
+        //   .insertItem()
+        //   .extractItem()
+        // )
 
 
       be.attachCapability(

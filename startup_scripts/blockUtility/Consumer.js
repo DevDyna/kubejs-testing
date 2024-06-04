@@ -11,7 +11,7 @@ StartupEvents.registry("block", (event) => {
     .randomTick((tick) => {
       const { x, y, z } = tick.block;
 
-      let ore = ["stone", "coal_ore", "copper_ore", "iron_ore", "gold_ore"];
+      let ore = ["coal_ore", "copper_ore", "iron_ore", "gold_ore"];
       let count = 0;
       let pos = [];
       ore.forEach((or) => {
@@ -41,7 +41,7 @@ StartupEvents.registry("block", (event) => {
         ore.forEach((element, index) => {
           if (blockfilter == "minecraft:" + element) {
             blockfilter.set(
-              "minecraft:" + element == "stone" ? "air" : ore[index - 1]
+              "minecraft:" + ore[index - 1]
             );
             return;
           }
