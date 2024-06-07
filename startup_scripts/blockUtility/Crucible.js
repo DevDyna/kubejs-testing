@@ -1,6 +1,7 @@
+function cauldron(name,input,output){
 StartupEvents.registry("block", (event) => {
   event
-    .create("kubejs:crucible")
+    .create(name)
     .property($BooleanProperty.create("has_water"))
     .defaultState((state) => {
       state.set($BooleanProperty.create("has_water"), false);
@@ -16,7 +17,7 @@ StartupEvents.registry("block", (event) => {
         click.player.give("minecraft:bucket");
         click.level
           .getBlock(x, y, z)
-          .set("kubejs:crucible", { has_water: true });
+          .set(name, { has_water: true });
       }
       if (click.item.id == "minecraft:bucket") {
         click.player.inventory.extractItem(
@@ -27,7 +28,7 @@ StartupEvents.registry("block", (event) => {
         click.player.give("minecraft:water_bucket");
         click.level
           .getBlock(x, y, z)
-          .set("kubejs:crucible", { has_water: false });
+          .set(name, { has_water: false });
       }
     })
     .blockEntity((be) => {
@@ -44,13 +45,12 @@ StartupEvents.registry("block", (event) => {
             .forEach((entity) => {
               if (entity.type != "minecraft:item") return;
 
-              if (entity.item == "minecraft:iron_ingot") {
+              if (entity.item == input) {
                 entity.setRemoved("unloaded_to_chunk");
 
-                let rool = entity.item.count > 1 ? entity.item.count : 1;
-                for (let i = 0; i < rool; i++) {
+                for (let i = 0; i < entity.item.count > 1 ? entity.item.count : 1; i++) {
                   tick.block.popItemFromFace(
-                    "minecraft:gold_ingot",
+                    output,
                     Direction.UP
                   );
                 }
@@ -97,3 +97,5 @@ StartupEvents.registry("block", (event) => {
     },
   };
 });
+}
+cauldron("kubejs:crucible","minecraft:iron_ingot","minecraft:gold_ingot")
