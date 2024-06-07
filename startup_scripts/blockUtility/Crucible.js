@@ -8,15 +8,23 @@ StartupEvents.registry("block", (event) => {
     .rightClick((click) => {
       const { x, y, z } = click.block;
       if (click.item.id == "minecraft:water_bucket") {
-        click.player.inventory.extractItem(click.player.inventory.find('minecraft:water_bucket'),1,false)
-        click.player.give('minecraft:bucket')
+        click.player.inventory.extractItem(
+          click.player.inventory.find("minecraft:water_bucket"),
+          1,
+          false
+        );
+        click.player.give("minecraft:bucket");
         click.level
           .getBlock(x, y, z)
           .set("kubejs:crucible", { has_water: true });
       }
       if (click.item.id == "minecraft:bucket") {
-        click.player.inventory.extractItem(click.player.inventory.find('minecraft:bucket'),1,false)
-        click.player.give('minecraft:water_bucket')
+        click.player.inventory.extractItem(
+          click.player.inventory.find("minecraft:bucket"),
+          1,
+          false
+        );
+        click.player.give("minecraft:water_bucket");
         click.level
           .getBlock(x, y, z)
           .set("kubejs:crucible", { has_water: false });
@@ -27,7 +35,7 @@ StartupEvents.registry("block", (event) => {
         const { x, y, z } = tick.block;
         if (
           tick.level.getBlock(x, y - 1, z).hasTag("minecraft:campfires") &&
-          tick.level.getBlock(x, y , z).properties.get("has_water")
+          tick.level.getBlock(x, y, z).properties.get("has_water")
         ) {
           tick.level
             .getEntitiesWithin(
