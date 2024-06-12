@@ -11,6 +11,9 @@
 ### EU2 like Pipe just for decoration *maybe*
 [`Block Pipe #1`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/startup_scripts/blockUtility/Pipe.js) [`Block Pipe #2`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/server_scripts/Pipe/Pipe.js) [thanks to XavBX to fix some issues]
 
+### *Plants vs blocks*
+[`Block Plant #1`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/startup_scripts/blockUtility/Chorus.js) [`Block Plant #2`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/server_scripts/Pipe/Chorus.js)
+
 ### *Smart way to fill batteries!* 
 Left-Click on a machine convert the item into RF without delay
 
