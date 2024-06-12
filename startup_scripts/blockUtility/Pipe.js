@@ -1,22 +1,23 @@
-const oppositeDirection = {
-  north: Direction.SOUTH,
-  south: Direction.NORTH,
-  east: Direction.WEST,
-  west: Direction.EAST,
-  down: Direction.UP,
-  up: Direction.DOWN,
-};
-
-const directionProperties = {
-  north: BlockProperties.NORTH,
-  south: BlockProperties.SOUTH,
-  east: BlockProperties.EAST,
-  west: BlockProperties.WEST,
-  down: BlockProperties.DOWN,
-  up: BlockProperties.UP,
-};
-
 StartupEvents.registry("block", (event) => {
+
+  const oppositeDirection = {
+    north: Direction.SOUTH,
+    south: Direction.NORTH,
+    east: Direction.WEST,
+    west: Direction.EAST,
+    down: Direction.UP,
+    up: Direction.DOWN,
+  };
+  
+  const directionProperties = {
+    north: BlockProperties.NORTH,
+    south: BlockProperties.SOUTH,
+    east: BlockProperties.EAST,
+    west: BlockProperties.WEST,
+    down: BlockProperties.DOWN,
+    up: BlockProperties.UP,
+  };
+
   event
     .create("kubejs:pipe")
     .property(BlockProperties.NORTH)
@@ -25,7 +26,6 @@ StartupEvents.registry("block", (event) => {
     .property(BlockProperties.WEST)
     .property(BlockProperties.UP)
     .property(BlockProperties.DOWN)
-    .property($IntegerProperty.create("type", 0, 1))
     .defaultCutout()
     .defaultState((state) => {
       // <dev.latvian.mods.kubejs.block.callbacks.BlockStateModifyCallbackJS> state
@@ -36,7 +36,6 @@ StartupEvents.registry("block", (event) => {
         .set(BlockProperties.WEST, false)
         .set(BlockProperties.UP, false)
         .set(BlockProperties.DOWN, false)
-        .set($IntegerProperty.create("type", 0, 1), 0);
     })
     .placementState((state) => {
       // <dev.latvian.mods.kubejs.block.callbacks.BlockStateModifyPlacementCallbackJS> state
@@ -55,40 +54,35 @@ StartupEvents.registry("block", (event) => {
       }
     })
     .item((item) => {
-      item.modelJson({ parent: "kubejs:block/pipe/item_model" });
+      item.modelJson({ parent: "kubejs:block/pipe/basic/item_model" });
     }).blockstateJson = {
     multipart: [
       {
-        when: { type: "0" },
-        apply: { model: "kubejs:block/pipe/core" },
-      },
-      {
-        when: { type: "1" },
-        apply: { model: "kubejs:block/pipe/core1" },
+        apply: { model: "kubejs:block/pipe/basic/core" },
       },
       {
         when: { north: "true" },
-        apply: { model: "kubejs:block/pipe/pipe" },
+        apply: { model: "kubejs:block/pipe/basic/pipe" },
       },
       {
         when: { east: "true" },
-        apply: { model: "kubejs:block/pipe/pipe", y: 90 },
+        apply: { model: "kubejs:block/pipe/basic/pipe", y: 90 },
       },
       {
         when: { west: "true" },
-        apply: { model: "kubejs:block/pipe/pipe", y: -90 },
+        apply: { model: "kubejs:block/pipe/basic/pipe", y: -90 },
       },
       {
         when: { south: "true" },
-        apply: { model: "kubejs:block/pipe/pipe", y: 180 },
+        apply: { model: "kubejs:block/pipe/basic/pipe", y: 180 },
       },
       {
         when: { up: "true" },
-        apply: { model: "kubejs:block/pipe/pipe", x: -90 },
+        apply: { model: "kubejs:block/pipe/basic/pipe", x: -90 },
       },
       {
         when: { down: "true" },
-        apply: { model: "kubejs:block/pipe/pipe", x: 90 },
+        apply: { model: "kubejs:block/pipe/basic/pipe", x: 90 },
       },
     ],
   };

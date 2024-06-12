@@ -1,11 +1,12 @@
-let val = 3;
+
+StartupEvents.registry("block", (event) => {
+  let val = 3;
 let lis = [];
 let cont = 1;
 while (lis.length != val) {
   lis.push(cont);
   cont++;
 }
-StartupEvents.registry("block", (event) => {
   event
     .create("kubejs:consumer")
     .randomTick((tick) => {

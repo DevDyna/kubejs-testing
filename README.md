@@ -9,7 +9,7 @@
 [`Custom Block Pillar-like #1`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/startup_scripts/multi.js) [`Custom Block Pillar-like #2`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/server_scripts/multi_break.js)
 
 ### EU2 like Pipe just for decoration *maybe*
-[`Block Pipe #1`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/startup_scripts/pipe.js) [`Block Pipe #2`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/server_scripts/pipe.js) [thanks to XavBX to fix some issues]
+[`Block Pipe #1`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/startup_scripts/blockUtility/Pipe.js) [`Block Pipe #2`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/server_scripts/Pipe/Pipe.js) [thanks to XavBX to fix some issues]
 
 ### *Smart way to fill batteries!* 
 Left-Click on a machine convert the item into RF without delay
