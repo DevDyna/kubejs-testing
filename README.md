@@ -65,19 +65,10 @@ Like Environmental Tech Miners , a configurable block multiblock that can produc
 ### Custom Crystal Seed
 Custom resources from ember?!
 
-[`EmberSeed #1`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/startup_scripts/EmberSeed.js)
-
-[`EmberSeed #2`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/server_scripts/EmberTags.js)
-
-[`EmberSeed #3`](https://github.com/Celestial-Remembrance/kubejs-testing/tree/main/assets/embers)
+[`EmberSeed #1`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/startup_scripts/EmberSeed.js) [`EmberSeed #2`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/server_scripts/EmberTags.js) [`EmberSeed #3`](https://github.com/Celestial-Remembrance/kubejs-testing/tree/main/assets/embers)
 
 
-
-
-
-
-
-
+# 
 
 
 ### Not Yet Completed / IDK why i want keep
