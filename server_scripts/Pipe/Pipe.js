@@ -1,6 +1,5 @@
-  BlockEvents.broken((event) => {
+BlockEvents.broken("kubejs:pipe",event => {
     // <dev.latvian.mods.kubejs.block.BlockBrokenEventJS> event
-    if (event.block.id === "kubejs:pipe") {
       try {
         Object.keys(Direction.ALL).forEach((direction) => {
           let offsetBlock = event.block.offset(direction);
@@ -15,5 +14,4 @@
       } catch (error) {
         console.error(error);
       }
-    }
   });
