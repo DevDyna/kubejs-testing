@@ -1,0 +1,7 @@
+{
+  "parent": "kubejs:block/embers/parts/template",
+  "textures": {
+	"pipe": "embers:block/lead_pipe_tex",
+	"plug": "embers:block/plates"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "kubejs:block/embers/template",
+  "textures": {
+	"top": "kubejs:block/field_chart_center_base_off",
+    "front": "embers:block/archaic_bricks",
+	"ball": "embers:block/plates"
+  }
+}
