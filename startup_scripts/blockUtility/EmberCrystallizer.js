@@ -22,11 +22,10 @@ StartupEvents.registry("block", (event) => {
         .set(BlockProperties.SOUTH, false)
         .set(BlockProperties.EAST, false)
         .set(BlockProperties.WEST, false);
+        state.block.entityData["embers:ember_capacity"] = 100000
+        state.block.entityData["embers:ember"] = 0
     })
     .defaultCutout()
-    .defaultState((state) => {
-      state.set($BooleanProperty.create("active"), false);
-    })
     .blockEntity((be) => {
       be.serverTick(1, 0, (tick) => {
         const { block, level } = tick;
@@ -41,6 +40,7 @@ StartupEvents.registry("block", (event) => {
           east: "x",
           west: "x",
         };
+        block.entityData["embers:ember_capacity"] = 100000
         direc.forEach((dir) => {
           try {
             if (
@@ -60,6 +60,7 @@ StartupEvents.registry("block", (event) => {
         block.set("kubejs:crystallizer", prop);
 
         if (block.properties.get("active").toLowerCase() === "true" && rnd50()) {
+          block.entityData["embers:ember"] = amount
           level.runCommandSilent(
             "/particle embers:smoke " +
               rnd(50, 100) +
