@@ -70,6 +70,14 @@ Custom resources from ember?!
 
 # 
 
+## REQUIRE Embers Rekindled AND Create
+
+## Create RPM + Ember what could be wrong?
+
+[`EmberCrystallizer`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/startup_scripts/blockUtility/EmberCrystallizer.js)
+
+
+#
 
 ### Not Yet Completed / IDK why i want keep
 
