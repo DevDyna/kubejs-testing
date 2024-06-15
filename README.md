@@ -68,11 +68,10 @@ Custom resources from ember?!
 [`EmberSeed #1`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/startup_scripts/EmberSeed.js) [`EmberSeed #2`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/server_scripts/EmberTags.js) [`EmberSeed #3`](https://github.com/Celestial-Remembrance/kubejs-testing/tree/main/assets/embers)
 
 
-# 
 
 ## REQUIRE Embers Rekindled AND Create
 
-## Create RPM + Ember what could be wrong?
+### Create RPM + Ember what could be wrong?
 
 [`EmberCrystallizer`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/startup_scripts/blockUtility/EmberCrystallizer.js)
 
