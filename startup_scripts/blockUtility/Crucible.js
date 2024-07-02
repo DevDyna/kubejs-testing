@@ -46,12 +46,8 @@ function cauldron(name, input, output) {
 
                 if (entity.item == input) {
                   entity.setRemoved("unloaded_to_chunk");
-
-                  for (
-                    let i = 0;
-                    i < entity.item.count > 1 ? entity.item.count : 1;
-                    i++
-                  ) {
+                  let max = entity.item.count > 1 ? entity.item.count : 1;
+                  for (let i = 0; i < max; i++) {
                     tick.block.popItemFromFace(output, Direction.UP);
                   }
                 }
