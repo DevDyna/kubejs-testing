@@ -41,6 +41,7 @@ StartupEvents.registry("block", (event) => {
             );
           });
         }
+        block.set(block.id,{contain_items:false})
       } else {
         return;
       }
