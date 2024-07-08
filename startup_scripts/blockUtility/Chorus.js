@@ -92,34 +92,39 @@ StartupEvents.registry("block", (event) => {
     .randomTick((tick) => {
       const { block } = tick;
       const prop = block.properties;
-      if (rnd50() && prop.get("is_master").toLowerCase() === "true") {
+      if (rnd75() && prop.get("is_master").toLowerCase() === "true") {
         let undir = ["down", "south", "north", "west", "east"];
         let dire = ["up", "north", "south", "east", "west"];
         dire.forEach((dir, index) => {
-          if (rnd50() && block.offset(dir) == "minecraft:air") {
-            // let stage = prop.get("stage");
-            let js = {};  //DONT CONVERT AS PROP !!! I HAVE HATED IT FOR HOURS !!!
-            js.is_master = rnd50();
-            // js.stage = stage;
-            js.stage = "0";
-            js[undir[index]] = true;
-            block.offset(dir).set("kubejs:plant", js);
+          if (rnd25() && block.offset(dir) == "minecraft:air") {
+            let next = {}; //DONT CONVERT AS PROP !!! I HAVE HATED IT FOR HOURS !!!
+            next.is_master = rnd75();
+            next.stage = prop.get("stage");
+            //next.stage = prop.get("stage");
+            next[undir[index]] = true;
+            block.offset(dir).set("kubejs:plant", next);
             let base = prop;
             base[dir] = true;
             base.is_master = false;
-            base.stage = "0";
-            // let destage = 0;
-            // switch (prop.get("stage").toLowerCase()) {
-            //   case "0":
-            //     destage = 1;
-            //     break;
-            //   case "1":
-            //     destage = 2;
-            //     break;
-            //   case "2":
-            //     break;
-            // }
-            // base.stage = rnd75() ? stage : destage.toString();
+
+            let destage = prop.get("stage").toLowerCase();
+            if (rnd25()) {
+              switch (destage) {
+                case "0":
+                  if (rnd25()) {
+                    destage = "1";
+                  }
+                  break;
+                case "1":
+                  if (rnd25()) {
+                    destage = "2";
+                  }
+                  break;
+                default:
+                  break;
+              }
+            }
+            base.stage = destage;
             block.set("kubejs:plant", base);
           }
         });
