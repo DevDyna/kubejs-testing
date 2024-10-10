@@ -1,4 +1,4 @@
-# Celestial Remembrance Script Collection
+# DevDyna Script Collection
 ### Many strange or no-sense scripts
 
 
@@ -86,4 +86,4 @@ Custom resources from ember?!
 ~~[`NeoMagicJS source`](https://github.com/Celestial-Remembrance/kubejs-testing/blob/main/server_scripts/pedestal.js)~~ -> [`NeoMagicJS repository`](https://github.com/DevDyna/NeoMagicJS)
 
 ### For more info
-[[github](https://github.com/Celestial-Remembrance)]
+~~[[github](https://github.com/Celestial-Remembrance)]~~
