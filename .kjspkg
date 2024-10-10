@@ -1,6 +1,6 @@
 {
-    "author": "Celestial-Remembrance, DevDyna",
-    "description": "Collection of random scripts from Celestial Remembrance Team",
+    "author": "DevDyna",
+    "description": "Collection of random scripts from DevDyna",
     
     "versions": [10],
     "modloaders": ["forge"],
